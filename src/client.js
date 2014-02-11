@@ -7,3 +7,5 @@ var app = App(null);
 domready(function () {
   React.renderComponent(app, document.body);
 });
+
+db = require('./clientdb');

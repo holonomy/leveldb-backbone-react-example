@@ -4,3 +4,6 @@ db.sqlite*
 /README.md
 *.less
 *.swp
+/db/*
+*~
+/src/manifest.json

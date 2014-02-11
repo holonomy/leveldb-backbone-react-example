@@ -23,9 +23,14 @@
     "envify": "~0.2.0",
     "react": "~0.8.0",
     "semantic-ui": "git+https://github.com/Semantic-Org/Semantic-UI.git",
-    "underscore": "~1.6.0",
     "react-router-component": "~0.2.1",
-    "domready": "~0.2.13"
+    "domready": "~0.2.13",
+    "lodash": "~2.4.1",
+    "level-live-stream": "~1.4.9",
+    "multilevel": "~5.5.0",
+    "level": "~0.18.0",
+    "shoe": "0.0.15",
+    "level-store": "~3.10.1"
   },
   "devDependencies": {
     "mocha": "~1.16.0",
