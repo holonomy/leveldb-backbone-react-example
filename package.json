@@ -23,7 +23,7 @@
     "envify": "~0.2.0",
     "react": "~0.8.0",
     "semantic-ui": "git+https://github.com/Semantic-Org/Semantic-UI.git",
-    "react-router-component": "~0.2.1",
+    "react-router-component": "git+https://github.com/ahdinosaur/react-router-component.git",
     "domready": "~0.2.13",
     "lodash": "~2.4.1",
     "level-live-stream": "~1.4.9",
