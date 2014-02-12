@@ -1,8 +1,7 @@
 var React = require('react');
 var domready = require('domready');
 
-var App = require('./app.jsx');
-var app = App(null);
+var app = require('./app.jsx');
 
 domready(function () {
   React.renderComponent(app, document.body);

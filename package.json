@@ -1,17 +1,17 @@
 {
-  "name": "action-delegation",
+  "name": "leveldb-react-semantic-example",
   "version": "0.0.0",
-  "description": "a holonic action delegation system",
+  "description": "an example stack using leveldb, react, and semantic-ui",
   "main": "./index.js",
   "browser": "./src/client.js",
   "repository": {
     "type": "git",
-    "url": "http://github.com/holonomy/action-delegation"
+    "url": "http://github.com/holonomy/leveldb-react-semantic-example"
   },
   "author": "",
   "license": "AGPLv3",
   "bugs": {
-    "url": "https://github.com/holonomy/action-delegation/issues"
+    "url": "https://github.com/holonomy/leveldb-react-semantic-example/issues"
   },
   "dependencies": {
     "ecstatic": "~0.4.12",
@@ -30,7 +30,8 @@
     "multilevel": "~5.5.0",
     "level": "~0.18.0",
     "shoe": "0.0.15",
-    "level-store": "~3.10.1"
+    "level-store": "~3.10.1",
+    "node-uuid": "~1.4.1"
   },
   "devDependencies": {
     "mocha": "~1.16.0",
