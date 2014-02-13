@@ -53,7 +53,7 @@
   },
   "scripts": {
     "build-js": "browserify src/client.js | uglifyjs -mc > static/index.js",
-    "build-css": "catw -c 'lessc --include-path=src:node_modules/semantic-ui/src -' 'src/index.less' | cssmin > static/index.css",
+    "build-css": "lessc --include-path=src:node_modules/semantic-ui/src src/index.less static/index.css",
     "build": "npm run build-css && npm run build-js",
     "watch-js": "watchify src/client.js -o static/index.js -dv",
     "watch-css": "catw -c 'lessc --include-path=src:node_modules/semantic-ui/src -' 'src/index.less' -o static/index.css -v",
