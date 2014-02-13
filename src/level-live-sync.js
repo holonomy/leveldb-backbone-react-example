@@ -12,22 +12,27 @@ module.exports = function liveSync (collection) {
 
       var changed = collection.get(change.key);
 
-      if (!changed) { return; }
-
       switch (change.type) {
         case undefined:
         case 'get':
         case 'put':
-          changed.set(change.value);
+          if (changed) {
+            changed.set(change.value);
+          } else {
+            collection.push(change.value);
+          }
           break;
 
         case 'del':
-          
-          changed.trigger(
-            'destroy',
-            changed
-          );
+
+          if (changed) { 
+            changed.trigger(
+              'destroy',
+              changed
+            );
+          }
           break;
+
       }
     })
     .on('error', function (err) {

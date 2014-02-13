@@ -12,8 +12,20 @@ module.exports = React.createClass({
   },
 
   render: function () {
+
+    var action = this.props.app.state || 'write';
+    var otherAction = (action === "write") ? "read" : "write";
+
     return (
-      <ListView list={new List()} />
+      <div>
+        <nav>
+          go to <a href={"#" + otherAction}>{otherAction}</a>
+        </nav>
+        <header>
+          <h1>{action}</h1>
+        </header>
+        <ListView list={new List()} action={action} />
+      </div>
     );
   },
 

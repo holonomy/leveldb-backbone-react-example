@@ -12,7 +12,7 @@ domready(function () {
   var appView = AppView({ app: app });
 
   // wire up router to app model
-  router.on('route', app.onStateSelected, app);
+  router.on('all', app.onStateSelected, app);
 
   // wire up app view to document
   React.renderComponent(appView, document.body);

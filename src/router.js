@@ -4,7 +4,9 @@ var Backbone = require('backbonew');
 
 module.exports = Backbone.Router.extend({
   route: {
-    "persons": "persons",
+    "write": "write",
+    "read": "read",
+    "*notFound": "write",
   },
 
   navigateToAndTrigger: function(href) {

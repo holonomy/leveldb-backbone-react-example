@@ -14,27 +14,21 @@ module.exports = React.createClass({
   },
 
   render: function () {
-    console.log(this.props.list);
+    console.log("ListView render", this.props);
+
+    var action = this.props.action;
 
     var itemize = function (item) {
-      return <ItemView item={item} onChange={this.onChange} key={item.id} />
+      return <ItemView item={item} onChange={this.onChange} key={item.id} action={action} />
     };
 
     return (
-      <div>
-        <nav>
-          go to <a href="read">read</a>
-        </nav>
-        <header>
-          <h1>write</h1>
-        </header>
-        <main>
-          <button onClick={this.add}>+</button>
-          <ul>
-            {_.map(this.props.list.models, itemize)}
-          </ul>
-        </main>
-      </div>
+      <main>
+        <button onClick={this.add}>+</button>
+        <ul>
+          {_.map(this.props.list.models, itemize)}
+        </ul>
+      </main>
     );
   },
 

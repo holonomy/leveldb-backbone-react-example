@@ -13,13 +13,23 @@ module.exports = React.createClass({
 
     var id = this.props.item.id;
     var value = this.props.item.get('value');
+    var action = this.props.action;
 
-    return (
-      <li>
-        <input value={value} onChange={this.onChange} placeholder="empty" />
-        <button onClick={this.onDelete}>x</button>
-      </li>
-    );
+    if (action === "write") {
+      return (
+        <li>
+          <input value={value} onChange={this.onChange} placeholder="empty" />
+          <button onClick={this.onDelete}>x</button>
+          <button onClick={this.onSave}>✓</button>
+        </li>
+      );
+    } else {
+      return (
+        <li>
+          {value}
+        </li>
+      );
+    }
   },
 
   onChange: function (e) {
@@ -30,6 +40,11 @@ module.exports = React.createClass({
   onDelete: function (e) {
     console.log("destroy", this.props.item.id);
     this.props.item.destroy();
+  },
+
+  onSave: function (e) {
+    console.log("save", this.props.item.id);
+    this.props.item.save();
   },
 });
 
