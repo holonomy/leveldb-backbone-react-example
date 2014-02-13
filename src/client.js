@@ -1,10 +1,21 @@
 var React = require('react');
 var domready = require('domready');
 
-var app = require('./app.jsx');
+var Router = require('./router');
+var App = require('./app');
+var AppView = require('./app-view.jsx');
+
 
 domready(function () {
-  React.renderComponent(app, document.body);
+  var router = new Router();
+  var app = new App();
+  var appView = AppView({ app: app });
+
+  // wire up router to app model
+  router.on('route', app.onStateSelected, app);
+
+  // wire up app view to document
+  React.renderComponent(appView, document.body);
 });
 
 db = require('./clientdb');

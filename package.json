@@ -23,7 +23,6 @@
     "envify": "~0.2.0",
     "react": "~0.8.0",
     "semantic-ui": "git+https://github.com/Semantic-Org/Semantic-UI.git",
-    "react-router-component": "git+https://github.com/ahdinosaur/react-router-component.git",
     "domready": "~0.2.13",
     "lodash": "~2.4.1",
     "level-live-stream": "~1.4.9",
@@ -31,7 +30,10 @@
     "level": "~0.18.0",
     "shoe": "0.0.15",
     "level-store": "~3.10.1",
-    "node-uuid": "~1.4.1"
+    "node-uuid": "~1.4.1",
+    "backbonew": "git+https://github.com/holonomy/backbonew.git",
+    "react-backbone-mixin": "git+https://github.com/ahdinosaur/react-backbone-mixin.git",
+    "levelsync": "git+https://github.com/ahdinosaur/levelsync.git"
   },
   "devDependencies": {
     "mocha": "~1.16.0",
