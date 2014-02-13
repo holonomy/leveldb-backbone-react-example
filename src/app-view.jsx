@@ -13,7 +13,7 @@ module.exports = React.createClass({
 
   render: function () {
     return (
-      <ListView list={new List({})} />
+      <ListView list={new List()} />
     );
   },
 
