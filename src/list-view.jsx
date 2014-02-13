@@ -14,10 +14,10 @@ module.exports = React.createClass({
   },
 
   render: function () {
+    console.log(this.props.list);
 
     var itemize = function (item) {
-
-      return <ItemView item={item} onChange={this.onChange} />
+      return <ItemView item={item} onChange={this.onChange} key={item.id} />
     };
 
     return (
