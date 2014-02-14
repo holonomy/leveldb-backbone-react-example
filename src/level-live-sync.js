@@ -35,6 +35,5 @@ module.exports = function liveSync (collection) {
       throw err;
     })
     .on('close', function () {
-      collection.inSync = false;
     });
 };
