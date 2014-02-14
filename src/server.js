@@ -1,18 +1,27 @@
 "use strict";
 
-var http = require('http');
+var express = require('express');
+var fs = require('fs');
 var ecstatic = require('ecstatic');
 var multilevel = require('multilevel');
 var shoe = require('shoe');
 
 var isProd = (process.env.NODE_ENV === "production");
 
-var server = http.createServer(
-  ecstatic({
+var app = express();
+
+app.configure(function () {
+  app.use(ecstatic({
     root: __dirname + "/../static",
     cache: (isProd ? 3600 : 0),
-  })
-);
+  }));
+})
+
+app.get('*', function (req, res) {
+  fs.createReadStream(__dirname + '/../static/index.html').pipe(res);
+});
+
+var server = app.listen(isProd ? 80 : 5000);
 
 // db
 var db = require('./serverdb');

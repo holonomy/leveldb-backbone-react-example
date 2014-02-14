@@ -1,4 +1,4 @@
-var Backbone = require('backbonew');
+var Backbone = require('backbone');
 var levelSync = require('levelsync');
 var uuid = require('node-uuid');
 

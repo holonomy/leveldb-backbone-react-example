@@ -2,6 +2,9 @@ var React = require('react');
 var BackboneMixin = require('react-backbone-mixin');
 
 var List = require('./list');
+
+var NavView = require('./nav-view.jsx');
+var HeaderView = require('./header-view.jsx');
 var ListView = require('./list-view.jsx');
 
 module.exports = React.createClass({
@@ -13,20 +16,26 @@ module.exports = React.createClass({
 
   render: function () {
 
-    var action = this.props.app.state || 'write';
-    var otherAction = (action === "write") ? "read" : "write";
+    var action = this.props.app.get('state') || 'write';
 
     return (
-      <div>
-        <nav>
-          go to <a href={"#" + otherAction}>{otherAction}</a>
-        </nav>
-        <header>
-          <h1>{action}</h1>
-        </header>
+      <div onClick={this.onClick} navigate={this.navigate}>
+        <NavView action={action} />
+        <HeaderView action={action} />
         <ListView list={new List()} action={action} />
       </div>
     );
   },
 
+  onClick: function (e) {
+    if (e.target.tagName === 'A' && e.target.attributes.href) {
+      e.preventDefault();
+      this.navigate(e.target.attributes.href.value);
+    }
+  },
+
+  navigate: function (href) {
+    console.log("navigate", href);
+    this.props.router.navigateToAndTrigger(href);
+  }
 });

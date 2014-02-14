@@ -1,18 +1,19 @@
 // http://www.edave.net/2014/01/26/top-down-backbone-routers-and-application-state/
 
-var Backbone = require('backbonew');
+var Backbone = require('backbone');
 
 module.exports = Backbone.Router.extend({
-  route: {
+  routes: {
+    "": "write",
     "write": "write",
     "read": "read",
-    "*notFound": "write",
+    "*notFound": "notFound",
   },
 
   navigateToAndTrigger: function(href) {
-    this.navigate(url, {
+    this.navigate(href, {
       trigger: true
-    })
-  }
+    });
+  },
 
 });

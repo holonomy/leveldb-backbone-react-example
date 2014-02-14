@@ -1,12 +1,8 @@
 var db = require('./clientdb');
 
 module.exports = function liveSync (collection) {
-  // check if already being sync'd
-  if (collection.inSync) { return; }
-
   // sync live
-  collection.inSync = true;
-  db.liveStream()
+  return db.liveStream()
     .on('data', function (change) {
       console.log("data", change);
 
