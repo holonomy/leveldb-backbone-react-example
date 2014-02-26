@@ -1,19 +1,18 @@
-// http://www.edave.net/2014/01/26/top-down-backbone-routers-and-application-state/
-
+var $ = require('jquery');
 var Backbone = require('backbone');
+Backbone.$ = $;
+var Bacon = require('bacon.model');
+require('history.js/scripts/bundled-uncompressed/html5/jquery.history.js');
 
-module.exports = Backbone.Router.extend({
-  routes: {
-    "": "write",
-    "write": "write",
-    "read": "read",
-    "*notFound": "notFound",
-  },
+var router = Bacon.fromBinder(function (sink) {
+  History.Adapter.bind(window, 'statechange', function () {
+    var state = History.getState();
+    sink(state);
+  });
 
-  navigateToAndTrigger: function(href) {
-    this.navigate(href, {
-      trigger: true
-    });
-  },
-
+  return function unsubscribe () {
+    $(window).unbind('statechange');
+  }
 });
+
+module.exports = router;

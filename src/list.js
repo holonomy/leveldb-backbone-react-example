@@ -1,11 +1,14 @@
-var Backbone = require('backbone');
+var Bacon = require('bacon.model');
+var _ = require('lodash');
+var uuid = require('node-uuid');
 
-var Item = require('./item');
-var liveSync = require('./level-live-sync');
+var list = new Bacon.Bus();
 
-module.exports = Backbone.Collection.extend({
-  model: Item,
-  initialize: function () {
-    this.stream = liveSync(this);
-  },
-});
+var push = list.push;
+list.push = function (obj) {
+  console.log("pushing!", obj);
+  obj = _.defaults(obj, { id: uuid(), });
+  push(Bacon.Model(obj))
+}
+
+module.exports = list;

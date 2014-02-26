@@ -4,12 +4,12 @@ module.exports = React.createClass({
 
   render: function () {
 
-    var action = this.props.action;
-    var otherAction = (action === "write") ? "read" : "write";
+    var mode = this.props.mode;
+    var othermode = (mode === "write") ? "read" : "write";
 
     return (
       <nav>
-        go to <a href={otherAction}>{otherAction}</a>
+        go to <a href={othermode}>{othermode}</a>
       </nav>
     );
   },

@@ -1,32 +1,32 @@
 var React = require('react');
-var BackboneMixin = require('react-backbone-mixin');
-var _ = require('lodash');
 var uuid = require('node-uuid');
+
+var list = require('./list');
 
 var ItemView = require('./item-view.jsx');
 
 module.exports = React.createClass({
 
-  mixins: [BackboneMixin.Model],
-
-  getBackboneModels: function () {
-    return [this.props.list];
+  getInitialState: function () {
+    return {
+      list: list,
+    };
   },
 
   render: function () {
-    console.log("ListView render", this.props);
+    console.log("ListView render", this.state);
 
-    var action = this.props.action;
+    var mode = this.props.mode;
 
     var itemize = function (item) {
-      return <ItemView item={item} onChange={this.onChange} key={item.id} action={action} />
+      return <ItemView item={item} onChange={this.onChange} key={item.id} mode={mode} />
     };
 
     return (
       <main>
         <button onClick={this.add}>+</button>
         <ul>
-          {_.map(this.props.list.models, itemize)}
+          {this.state.list.map(itemize)}
         </ul>
       </main>
     );
@@ -34,6 +34,6 @@ module.exports = React.createClass({
 
   add: function (e) {
     console.log("add");
-    this.props.list.create({});
+    this.state.list.push({});
   },
 });

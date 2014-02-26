@@ -1,15 +1,11 @@
-var Backbone = require('backbone');
+var Bacon = require('bacon.model');
 
-var List = require('./list');
+var router = require('./router');
 
-module.exports = Backbone.Model.extend({
-  
-  onStateSelected: function (state, args) {
-    this.set('state', state);
-  },
-
-  initialize: function () {
-    var list = new List();
-    this.set('list', list);
-  },
+var app = Bacon.Model({
+  state: "/read",
 });
+app.addSource(router);
+app.onValue(console, 'log');
+
+module.exports = app;
