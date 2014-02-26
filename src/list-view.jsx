@@ -1,4 +1,5 @@
 var React = require('react');
+var _ = require('lodash');
 var uuid = require('node-uuid');
 
 var list = require('./list');
@@ -14,26 +15,34 @@ module.exports = React.createClass({
   },
 
   render: function () {
-    console.log("ListView render", this.state);
 
-    var mode = this.props.mode;
+    console.log("ListView list", this.state.list.get());
 
     var itemize = function (item) {
-      return <ItemView item={item} onChange={this.onChange} key={item.id} mode={mode} />
+      return <ItemView item={item} onChange={this.onChange} key={item.id} mode={this.props.mode} />
     };
 
     return (
       <main>
         <button onClick={this.add}>+</button>
         <ul>
-          {this.state.list.map(itemize)}
+          {_.map(this.state.list.get(), itemize)}
         </ul>
       </main>
     );
   },
 
+  componentDidMount: function () {
+    this.state.list.onValue(this.someThingChanged);
+  },
+
+  someThingChanged: function () {
+    this.forceUpdate();
+  },
+
   add: function (e) {
     console.log("add");
-    this.state.list.push({});
+    var id = uuid();
+    this.state.list.db.put(id, { id: id });
   },
 });

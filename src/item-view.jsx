@@ -1,5 +1,4 @@
 var React = require('react');
-var BackboneMixin = require('react-backbone-mixin');
 
 module.exports = React.createClass({
 
@@ -7,7 +6,7 @@ module.exports = React.createClass({
 
     console.log("itemView props", this.props);
 
-    var id = this.props.item.id;
+    var id = this.props.item.get('id');
     var value = this.props.item.get('value');
     var mode = this.props.mode;
 
@@ -28,13 +27,19 @@ module.exports = React.createClass({
   },
 
   onChange: function (e) {
-    console.log("set", this.props.item.id, e.target.value);
-    this.props.item.set('value', e.target.value);
+    console.log("set", this.props.item.get('id'), e.target.value);
+
+    this.props.list.db.put(
+      this.props.item.get('id'),
+      _.assign(this.props.item, {
+        value: e.target.value,
+      })
+    );
   },
 
   onDelete: function (e) {
-    console.log("destroy", this.props.item.id);
-    this.props.item.destroy();
+    console.log("destroy", this.props.item.get('id'));
+    this.props.list.db.del(this.props.item.get('id'));
   },
 
 });
