@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "description": "an example stack using leveldb, react, and semantic-ui",
   "main": "./index.js",
-  "browser": "./src/client.js",
+  "browser": {
+    "./src/serverdb.js": "./src/clientdb.js"
+  },
   "repository": {
     "type": "git",
     "url": "http://github.com/holonomy/leveldb-react-semantic-example"
@@ -15,12 +17,6 @@
   },
   "dependencies": {
     "ecstatic": "~0.4.12",
-    "less": "~1.5.1",
-    "browserify": "~3.30.0",
-    "cssmin": "~0.4.1",
-    "uglify-js": "~2.4.7",
-    "reactify": "~0.7.0",
-    "envify": "~1.2.0",
     "react": "~0.9.0",
     "semantic-ui": "git+https://github.com/Semantic-Org/Semantic-UI.git",
     "lodash": "~2.4.1",
@@ -28,17 +24,16 @@
     "level": "~0.18.0",
     "shoe": "0.0.15",
     "node-uuid": "~1.4.1",
-    "jquery": "~2.1.0",
     "express": "~3.4.8",
     "bacon.model": "~0.1.5",
     "bacon.level": "git://github.com/holonomy/bacon.level",
     "react-router-component": "~0.6.0",
     "node-jsx": "~0.9.0",
-    "aliasify": "~1.4.0"
+    "domready": "~1.0.4"
   },
   "devDependencies": {
     "mocha": "~1.16.0",
-    "catw": "~0.2.0",
+    "browserify": "~3.30.0",
     "watchify": "~0.6.1",
     "nodemon": "~0.7.10",
     "jshint": "~2.4.0",
@@ -47,26 +42,24 @@
     "sinon": "~1.7.3",
     "chai": "~1.8.1",
     "chai-as-promised": "~4.1.0",
-    "mocha-as-promised": "~2.0.0"
+    "mocha-as-promised": "~2.0.0",
+    "reactify": "~0.7.0",
+    "envify": "~1.2.0",
+    "gulp": "~3.5.2",
+    "gulp-less": "~1.2.1",
+    "gulp-livereload": "~1.2.0",
+    "tiny-lr": "0.0.5",
+    "vinyl-source-stream": "~0.1.1"
   },
   "browserify": {
     "transform": [
       "reactify"
     ]
   },
-  "browser": {
-    "./src/serverdb.js": "./src/clientdb.js"
-  },
   "scripts": {
-    "build-js": "browserify src/client.js | uglifyjs -mc > static/index.js",
-    "build-css": "lessc --include-path=src:node_modules/semantic-ui/src src/index.less static/index.css",
-    "build": "npm run build-css && npm run build-js",
-    "watch-js": "watchify src/client.js -o static/index.js -dv",
-    "watch-css": "catw -c 'lessc --include-path=src:node_modules/semantic-ui/src -' 'src/index.less' -o static/index.css -v",
-    "watch": "npm run watch-css & npm run watch-js",
     "lint": "jshint src ;true",
-    "develop": "npm run watch & nodemon index.js",
-    "start": "npm run build && node .",
+    "develop": "gulp watch & nodemon index.js",
+    "start": "gulp && node .",
     "release": "npm-release patch -m \"version++\""
   }
 }
