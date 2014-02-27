@@ -17,27 +17,26 @@ module.exports = React.createClass({
   render: function () {
 
     console.log("ListView list", this.state.list.get());
+    var mode = this.props.mode;
 
     var itemize = function (item) {
-      return <ItemView item={item} onChange={this.onChange} key={item.id} mode={this.props.mode} />
+      return <ItemView item={item} key={item.lens('id').get()} mode={mode} />
     };
 
     return (
       <main>
         <button onClick={this.add}>+</button>
         <ul>
-          {_.map(this.state.list.get(), itemize)}
+          {this.state.list.map(itemize)}
         </ul>
       </main>
     );
   },
 
-  componentDidMount: function () {
-    this.state.list.onValue(this.someThingChanged);
-  },
-
-  someThingChanged: function () {
-    this.forceUpdate();
+  componentWillMount: function () {
+    this.state.list.onValue(function (val) {
+      this.forceUpdate();
+    }.bind(this));
   },
 
   add: function (e) {

@@ -1,13 +1,11 @@
 var $ = jQuery = require('jquery');
 var React = require('react');
 
-var AppView = require('./app-view.jsx');
+var App = require('./app.jsx');
 
 $(function () {
-  // create app view
-  var appView = AppView();
-  // wire up app view to document
-  React.renderComponent(appView, document.body);
+  // wire up app to document
+  React.renderComponent(App(), document.body);
 });
 
 db = require('./clientdb');

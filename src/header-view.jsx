@@ -4,13 +4,10 @@ module.exports = React.createClass({
 
   render: function () {
 
-    var mode = this.props.mode;
-
     return (
       <header>
-        <h1>{mode}</h1>
+        <h1>{this.props.mode}</h1>
       </header>
     );
   },
-
 });

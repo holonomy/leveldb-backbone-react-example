@@ -6,9 +6,8 @@ module.exports = React.createClass({
 
     console.log("itemView props", this.props);
 
-    var id = this.props.item.get('id');
-    var value = this.props.item.get('value');
-    var mode = this.props.mode;
+    var id = this.props.item.lens('id').get();
+    var value = this.props.item.lens('value').get();
 
     if (mode === "write") {
       return (
@@ -27,11 +26,11 @@ module.exports = React.createClass({
   },
 
   onChange: function (e) {
-    console.log("set", this.props.item.get('id'), e.target.value);
+    console.log("set", this.props.item.lens('id'), e.target.value);
 
     this.props.list.db.put(
-      this.props.item.get('id'),
-      _.assign(this.props.item, {
+      this.props.item.lens('id'),
+      _.assign(this.props.item.get(), {
         value: e.target.value,
       })
     );
