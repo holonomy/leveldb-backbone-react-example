@@ -32,7 +32,9 @@
     "express": "~3.4.8",
     "bacon.model": "~0.1.5",
     "bacon.level": "git://github.com/holonomy/bacon.level",
-    "react-router-component": "~0.6.0"
+    "react-router-component": "~0.6.0",
+    "node-jsx": "~0.9.0",
+    "aliasify": "~1.4.0"
   },
   "devDependencies": {
     "mocha": "~1.16.0",
@@ -51,6 +53,9 @@
     "transform": [
       "reactify"
     ]
+  },
+  "browser": {
+    "./src/serverdb.js": "./src/clientdb.js"
   },
   "scripts": {
     "build-js": "browserify src/client.js | uglifyjs -mc > static/index.js",

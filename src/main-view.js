@@ -1,8 +1,9 @@
+/** @jsx React.DOM */
 var React = require('react');
 
-var NavView = require('./nav-view.jsx');
-var HeaderView = require('./header-view.jsx');
-var ListView = require('./list-view.jsx');
+var NavView = require('./nav-view');
+var HeaderView = require('./header-view');
+var ListView = require('./list-view');
 
 module.exports = React.createClass({
 

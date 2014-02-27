@@ -5,20 +5,29 @@ var fs = require('fs');
 var ecstatic = require('ecstatic');
 var multilevel = require('multilevel');
 var shoe = require('shoe');
+var url = require('url');
+var React = require('react');
+require('node-jsx').install()
 
 var isProd = (process.env.NODE_ENV === "production");
 
 var app = express();
+var Page = require('./page-view')
 
-app.configure(function () {
-  app.use(ecstatic({
-    root: __dirname + "/../static",
-    cache: (isProd ? 3600 : 0),
-  }));
-})
+app.use(ecstatic({
+  root: __dirname + "/../static",
+  cache: (isProd ? 3600 : 0),
+}));
 
-app.get('*', function (req, res) {
-  fs.createReadStream(__dirname + '/../static/index.html').pipe(res);
+app.use(function (req, res, next) {
+  try {
+    var path = url.parse(req.url).pathname
+    var page = Page({path: path})
+    var markup = React.renderComponentToString(page)
+    res.send(markup)
+  } catch(err) {
+    return next(err)
+  }
 });
 
 var server = app.listen(isProd ? 80 : 5000);

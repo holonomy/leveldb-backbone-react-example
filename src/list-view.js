@@ -1,10 +1,10 @@
+/** @jsx React.DOM */
 var React = require('react');
 var _ = require('lodash');
 var uuid = require('node-uuid');
-
 var list = require('./list');
 
-var ItemView = require('./item-view.jsx');
+var ItemView = require('./item-view');
 
 module.exports = React.createClass({
 
