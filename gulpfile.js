@@ -8,18 +8,22 @@ var lr = require('tiny-lr');
 var server = lr();
 
 gulp.task('js-build', function () {
-  return watchify('./src/client.js')
-    .bundle()
-    .pipe(source('index.js'))
-    .pipe(gulp.dest('./static'))
-    .pipe(refresh(server));
-});
-
-gulp.task('js-watch', function () {
   return browserify('./src/client.js')
     .bundle()
     .pipe(source('index.js'))
     .pipe(gulp.dest('./static'))
+});
+
+gulp.task('js-watch', function () {
+  var bundler = watchify('./src/client.js')
+  var rebundle = function () {
+    return bundler.bundle()
+    .pipe(source('index.js'))
+    .pipe(gulp.dest('./static'))
+    .pipe(refresh(server));
+  }
+  bundler.on('update', rebundle);
+  return rebundle();
 });
 
 gulp.task('css-watch', function () {
@@ -42,7 +46,6 @@ gulp.task('lr-server', function (cb) {
 });
  
 gulp.task('watch', function () {
-  gulp.watch('./src/**/*.js', ['js-watch']);
   gulp.watch('./src/**/*.less', ['css-watch']);
 });
 

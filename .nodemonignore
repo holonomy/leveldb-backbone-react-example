@@ -1,9 +1,8 @@
-/static/*
-db.sqlite*
-/.git/*
+/static
+/.git
 /README.md
 *.less
 *.swp
-/db/*
+/db
 *~
 /src/manifest.json

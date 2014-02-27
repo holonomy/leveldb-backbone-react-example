@@ -19,6 +19,10 @@ app.use(ecstatic({
   cache: (isProd ? 3600 : 0),
 }));
 
+if (!isProd) {
+  app.use(require('connect-livereload')());
+}
+
 app.use(function (req, res, next) {
   try {
     var path = url.parse(req.url).pathname
