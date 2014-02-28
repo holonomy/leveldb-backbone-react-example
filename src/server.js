@@ -35,6 +35,7 @@ app.use(function (req, res, next) {
     var path = url.parse(req.url).pathname
     var page = Page({path: path})
     var markup = React.renderComponentToString(page)
+    res.writeHead(200, {"Content-Type": "text/html"});
     res.end(markup)
   } catch(err) {
     return next(err)
