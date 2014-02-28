@@ -11,6 +11,10 @@ var http = require('http');
 
 var app = connect();
 
+if (isProd) {
+  app.use(require('morgan')());
+}
+
 app.use(require('compression')());
 app.use(require('ecstatic')({
   root: __dirname + "/../static",
