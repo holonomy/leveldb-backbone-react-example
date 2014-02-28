@@ -10,7 +10,7 @@ module.exports = React.createClass({
   render: function () {
 
     return (
-      <MainView path={this.props.path} />
+      <MainView onClick={this.onClick} path={this.props.path} />
     );
   },
 });

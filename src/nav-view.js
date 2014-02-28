@@ -1,6 +1,8 @@
 /** @jsx React.DOM */
 var React = require('react');
 
+var LinkView = require('./link-view');
+
 module.exports = React.createClass({
 
   render: function () {
@@ -10,7 +12,10 @@ module.exports = React.createClass({
 
     return (
       <nav>
-        go to <a href={otherpath}>{otherpath}</a>
+        go to
+        <LinkView path={this.props.path} href={otherpath}>
+          {otherpath}
+        </LinkView>
       </nav>
     );
   },
