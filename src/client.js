@@ -1,11 +1,15 @@
+/** @jsx React.DOM */
 var React = require('react');
 var domready = require('domready');
 
+var Path = require('./path');
 var App = require('./app');
 
 domready(function () {
-  // wire up app to document
-  React.renderComponent(App(), document.body);
+  // create app
+  var app = App({ path: Path() });
+  // wire up app to document body
+  //React.renderComponent(app, document.body);
 });
 
 db = require('./clientdb');

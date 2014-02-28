@@ -6,12 +6,12 @@ module.exports = React.createClass({
 
   render: function () {
 
-    var mode = this.props.mode
-    var othermode = (mode === "write") ? "read" : "write";
+    var path = this.props.path.get()
+    var otherpath = (path === "/write") ? "/read" : "/write";
 
     return (
       <nav>
-        go to <Link href={"/"+othermode}>{othermode}</Link>
+        go to <Link href={otherpath}>{otherpath}</Link>
       </nav>
     );
   },

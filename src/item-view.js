@@ -5,12 +5,10 @@ module.exports = React.createClass({
 
   render: function () {
 
-    console.log("itemView props", this.props);
-
     var item = this.props.item.get();
-    var mode = this.props.mode;
+    var path = this.props.path.get();
 
-    if (mode === "write") {
+    if (path === "/write") {
       return (
         <li>
           <input value={item.value} onChange={this.onChange} placeholder="empty" />

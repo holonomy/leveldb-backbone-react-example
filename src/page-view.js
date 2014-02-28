@@ -16,7 +16,9 @@ module.exports = React.createClass({
           <link rel="stylesheet" href="index.css" />
           <script src="index.js"></script>
         </head>
-        <App path={this.props.path} />
+        <body>
+          <App path={this.props.path} />
+        </body>
       </html>
     );
   },

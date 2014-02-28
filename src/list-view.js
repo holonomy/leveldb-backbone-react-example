@@ -16,10 +16,10 @@ module.exports = React.createClass({
 
   render: function () {
 
-    var mode = this.props.mode;
+    var path = this.props.path;
 
     var itemize = function (item) {
-      return <ItemView item={item} key={item.get().id} mode={mode} />
+      return <ItemView item={item} key={item.get().id} path={path} />
     };
 
     return (

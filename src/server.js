@@ -16,24 +16,26 @@ if (isProd) {
 }
 
 app.use(require('compression')());
+app.use(require('static-favicon')(__dirname + '/../static/favicon.ico'));
 app.use(require('ecstatic')({
   root: __dirname + "/../static",
   cache: (isProd ? 3600 : 0),
 }));
 
 if (isDev) {
-  app.use(require('connect-livereload')());
+  //app.use(require('connect-livereload')());
 }
 
 var url = require('url');
 var React = require('react');
 require('node-jsx').install()
 
-var Page = require('./page-view')
+var Page = require('./page-view');
+var Path = require('./path');
 app.use(function (req, res, next) {
   try {
     var path = url.parse(req.url).pathname
-    var page = Page({path: path})
+    var page = Page({ path: Path(path) })
     var markup = React.renderComponentToString(page)
     res.writeHead(200, {"Content-Type": "text/html"});
     res.end(markup)

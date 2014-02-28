@@ -11,9 +11,9 @@ module.exports = React.createClass({
 
     return (
       <div>
-        <NavView mode={this.props.mode} />
-        <HeaderView  mode={this.props.mode} />
-        <ListView mode={this.props.mode} />
+        <NavView path={this.props.path} />
+        <HeaderView path={this.props.path} />
+        <ListView path={this.props.path} />
       </div>
     );
   },
