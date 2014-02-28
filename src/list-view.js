@@ -20,7 +20,7 @@ module.exports = React.createClass({
     var mode = this.props.mode;
 
     var itemize = function (item) {
-      return <ItemView item={item} key={item.lens('id').get()} mode={mode} />
+      return <ItemView item={item} key={item.get().id} mode={mode} />
     };
 
     return (

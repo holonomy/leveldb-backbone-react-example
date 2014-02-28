@@ -27,10 +27,10 @@ module.exports = React.createClass({
   },
 
   onChange: function (e) {
-    console.log("set", this.props.item.lens('id'), e.target.value);
+    console.log("set", this.props.item.get().id, e.target.value);
 
     this.props.list.db.put(
-      this.props.item.lens('id'),
+      this.props.item.get().id,
       _.assign(this.props.item.get(), {
         value: e.target.value,
       })
@@ -38,8 +38,8 @@ module.exports = React.createClass({
   },
 
   onDelete: function (e) {
-    console.log("destroy", this.props.item.get('id'));
-    this.props.list.db.del(this.props.item.get('id'));
+    console.log("destroy", this.props.item.get().id);
+    this.props.list.db.del(this.props.item.get().id);
   },
 
 });
