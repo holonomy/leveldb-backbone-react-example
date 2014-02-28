@@ -9,6 +9,9 @@ var server = lr();
 
 gulp.task('js-build', function () {
   return browserify('./src/client.js')
+    .transform({
+      global: true,
+    }, 'uglifyify')
     .bundle()
     .pipe(source('index.js'))
     .pipe(gulp.dest('./static'))
@@ -17,7 +20,7 @@ gulp.task('js-build', function () {
 gulp.task('js-watch', function () {
   var bundler = watchify('./src/client.js')
   var rebundle = function () {
-    return bundler.bundle()
+    return bundler.bundle({ debug: true })
     .pipe(source('index.js'))
     .pipe(gulp.dest('./static'))
     .pipe(refresh(server));
