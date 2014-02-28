@@ -62,7 +62,7 @@
   },
   "scripts": {
     "lint": "jshint src ;true",
-    "develop": "gulp develop & nodemon index.js",
+    "develop": "export NODE_ENV=development; gulp develop & nodemon index.js",
     "start": "gulp && node .",
     "release": "npm-release patch -m \"version++\""
   }

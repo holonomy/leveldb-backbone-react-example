@@ -10,16 +10,18 @@ var React = require('react');
 require('node-jsx').install()
 
 var isProd = (process.env.NODE_ENV === "production");
+var isDev = (process.env.NODE_ENV === "development");
 
 var app = express();
 var Page = require('./page-view')
 
+app.use(express.compress());
 app.use(ecstatic({
   root: __dirname + "/../static",
   cache: (isProd ? 3600 : 0),
 }));
 
-if (!isProd) {
+if (isDev) {
   app.use(require('connect-livereload')());
 }
 
