@@ -1,6 +1,5 @@
 /** @jsx React.DOM */
 var React = require('react');
-var Link = require('react-router-component').Link
 
 module.exports = React.createClass({
 
@@ -11,7 +10,7 @@ module.exports = React.createClass({
 
     return (
       <nav>
-        go to <Link href={otherpath}>{otherpath}</Link>
+        go to <a href={otherpath}>{otherpath}</a>
       </nav>
     );
   },

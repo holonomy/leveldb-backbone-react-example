@@ -1,12 +1,14 @@
 var Bacon = require('bacon.model');
-var locationBar = require('location-bar')();
+var LocationBar = require('location-bar')
+var locationBar = new LocationBar();
+
+var window = window;
 
 module.exports = function (initPath) {
   initPath = initPath || '#';
 
   var path = Bacon.Model(initPath);
 
-  var window = window;
   if (window) {
     locationBar.onChange(function (newPath) {
       path.set(newPath);
