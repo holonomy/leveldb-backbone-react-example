@@ -23,7 +23,7 @@ app.use(require('ecstatic')({
 }));
 
 if (isDev) {
-  //app.use(require('connect-livereload')());
+  app.use(require('connect-livereload')());
 }
 
 var url = require('url');
