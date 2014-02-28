@@ -16,7 +16,6 @@ module.exports = React.createClass({
 
   render: function () {
 
-    console.log("ListView list", this.state.list.get());
     var mode = this.props.mode;
 
     var itemize = function (item) {
@@ -27,7 +26,7 @@ module.exports = React.createClass({
       <main>
         <button onClick={this.add}>+</button>
         <ul>
-          {this.state.list.map(itemize)}
+          {this.state.list.get().map(itemize)}
         </ul>
       </main>
     );

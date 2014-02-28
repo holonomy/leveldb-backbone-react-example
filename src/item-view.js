@@ -7,20 +7,20 @@ module.exports = React.createClass({
 
     console.log("itemView props", this.props);
 
-    var id = this.props.item.lens('id').get();
-    var value = this.props.item.lens('value').get();
+    var item = this.props.item.get();
+    var mode = this.props.mode;
 
     if (mode === "write") {
       return (
         <li>
-          <input value={value} onChange={this.onChange} placeholder="empty" />
+          <input value={item.value} onChange={this.onChange} placeholder="empty" />
           <button onClick={this.onDelete}>x</button>
         </li>
       );
     } else {
       return (
         <li>
-          {value}
+          {item.value}
         </li>
       );
     }

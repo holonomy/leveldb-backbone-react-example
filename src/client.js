@@ -8,4 +8,4 @@ domready(function () {
   React.renderComponent(App(), document.body);
 });
 
-var db = require('./clientdb');
+db = require('./clientdb');
