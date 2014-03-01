@@ -17,9 +17,10 @@ module.exports = React.createClass({
   render: function () {
 
     var path = this.props.path;
+    var list = this.state.list;
 
     var itemize = function (item) {
-      return <ItemView item={item} key={item.get().id} path={path} />
+      return <ItemView item={item} key={item.get().id} path={path} list={list} />
     };
 
     return (

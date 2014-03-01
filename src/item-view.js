@@ -1,5 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react');
+var _ = require('lodash');
 
 module.exports = React.createClass({
 
@@ -8,7 +9,7 @@ module.exports = React.createClass({
     var item = this.props.item.get();
     var path = this.props.path.get();
 
-    if (path === "/write") {
+    if (path === "write") {
       return (
         <li>
           <input value={item.value} onChange={this.onChange} placeholder="empty" />

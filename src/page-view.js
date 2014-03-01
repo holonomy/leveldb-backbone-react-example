@@ -1,8 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react');
 
-var App = require('./app');
-
 module.exports = React.createClass({
 
   render: function () {
@@ -17,7 +15,7 @@ module.exports = React.createClass({
           <script src="index.js"></script>
         </head>
         <body>
-          <App path={this.props.path} />
+          INSERTBODYHERE
         </body>
       </html>
     );

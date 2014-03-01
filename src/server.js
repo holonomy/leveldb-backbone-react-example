@@ -32,15 +32,24 @@ require('node-jsx').install()
 
 var Page = require('./page-view');
 var Path = require('./path');
+var App = require('./app');
+
+// Cached regex for stripping a leading hash/slash and trailing space.
+var routeStripper = /^[#\/]|\s+$/g;
+
 app.use(function (req, res, next) {
   try {
-    var path = url.parse(req.url).pathname
-    var page = Page({ path: Path(path) })
-    var markup = React.renderComponentToString(page)
+    var path = url.parse(req.url).pathname;
+    path = path.replace(routeStripper, '');
+    var page = Page({ path: Path(path) });
+    var pageHtml = React.renderComponentToString(page);
+    var app = App({ path: Path(path) });
+    var appHtml = React.renderComponentToString(app);
+    var html = pageHtml.replace("INSERTBODYHERE", appHtml)
     res.writeHead(200, {"Content-Type": "text/html"});
-    res.end(markup)
+    res.end(html);
   } catch(err) {
-    return next(err)
+    return next(err);
   }
 });
 

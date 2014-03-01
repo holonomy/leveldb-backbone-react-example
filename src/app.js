@@ -3,14 +3,18 @@ var React = require('react');
 
 var MainView = require('./main-view');
 
-var window = window;
-
 module.exports = React.createClass({
 
   render: function () {
 
     return (
-      <MainView onClick={this.onClick} path={this.props.path} />
+      <MainView path={this.props.path} />
     );
+  },
+
+  componentWillMount: function () {
+    this.props.path.onValue(function (val) {
+      this.forceUpdate();
+    }.bind(this));
   },
 });

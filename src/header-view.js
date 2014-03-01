@@ -7,7 +7,7 @@ module.exports = React.createClass({
 
     return (
       <header>
-        <h1>{this.props.path.get()}</h1>
+        <h1>{this.props.path.get() || 'read'}</h1>
       </header>
     );
   },

@@ -7,15 +7,12 @@ module.exports = React.createClass({
 
   render: function () {
 
-    var path = this.props.path.get()
-    var otherpath = (path === "/write") ? "/read" : "/write";
+    var path = this.props.path.get();
+    var otherpath = (path === "write") ? "read" : "write";
 
     return (
       <nav>
-        go to
-        <LinkView path={this.props.path} href={otherpath}>
-          {otherpath}
-        </LinkView>
+        go to <LinkView href={otherpath}>{otherpath}</LinkView>
       </nav>
     );
   },

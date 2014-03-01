@@ -9,7 +9,7 @@ domready(function () {
   // create app
   var app = App({ path: Path() });
   // wire up app to document body
-  //React.renderComponent(app, document.body);
+  React.renderComponent(app, document.body);
 });
 
 db = require('./clientdb');

@@ -1,16 +1,19 @@
 /** @jsx React.DOM */
 var React = require('react');
+var _ = require('lodash');
+
+var router = require('./router');
 
 module.exports = React.createClass({
 
   render: function () {
 
-    var props = {
+    this.props = _.extend(this.props, {
       onClick: this.onClick,
-    };
-    
+    });
+
     return this.transferPropsTo(
-      React.DOM.a(props, this.props.children)
+      React.DOM.a(this.props, this.props.children)
     );
   },
 
@@ -20,11 +23,6 @@ module.exports = React.createClass({
 
   onClick: function(e) {
     e.preventDefault();
-
-    this.props.path.update(this.props.href);
-
-    if (this.props.onClick) {
-      this.props.onClick(e);
-    }
+    router.update(this.props.href, { trigger: true });
   },
 });

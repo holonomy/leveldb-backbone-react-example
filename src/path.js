@@ -1,24 +1,22 @@
 var Bacon = require('bacon.model');
 
-var window = window;
 
 module.exports = function (initPath) {
-  initPath = initPath || '#';
+  var path;
 
-  var path = Bacon.Model(initPath);
+  if (typeof initPath !== 'undefined') {
+    path = Bacon.Model(initPath);
 
-  if (window) {
-    var LocationBar = require('location-bar')
-    var locationBar = new LocationBar();
+  } else {
+    var router = require('./router');
 
-    locationBar.onChange(function (newPath) {
+    path = Bacon.Model(router.getFragment());
+
+    router.onChange(function (newPath) {
       path.set(newPath);
     });
-    locationBar.start({
-      pushState:true,
-    });
 
-    path.update = locationBar.update;
+    path.update = router.update.bind(router);
   }
 
   return path;
