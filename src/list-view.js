@@ -18,6 +18,7 @@ module.exports = React.createClass({
 
     var path = this.props.path;
     var list = this.state.list;
+    console.log("renderList", list.get());
 
     var itemize = function (item) {
       return <ItemView item={item} key={item.get().id} path={path} list={list} />
@@ -27,21 +28,24 @@ module.exports = React.createClass({
       <main>
         <button onClick={this.add}>+</button>
         <ul>
-          {this.state.list.get().map(itemize)}
+          {_.map(this.state.list.get(), itemize)}
         </ul>
       </main>
     );
   },
 
   componentWillMount: function () {
-    this.state.list.onValue(function (val) {
-      this.forceUpdate();
+    list.onValue(function (value) {
+      console.log("onValue", value);
+      this.setState({
+        list: list,
+      });
     }.bind(this));
   },
 
   add: function (e) {
     console.log("add");
     var id = uuid();
-    this.state.list.db.put(id, { id: id });
+    this.state.list.db.put(id, {});
   },
 });
