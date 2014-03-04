@@ -5,6 +5,4 @@ var uuid = require('node-uuid');
 
 var db = require('./serverdb');
 
-var list = Bacon.Level(db);
-
-module.exports = list;
+module.exports = Bacon.Level.Collection(db);

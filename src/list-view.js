@@ -2,9 +2,11 @@
 var React = require('react');
 var _ = require('lodash');
 var uuid = require('node-uuid');
-var list = require('./list');
 
+var List = require('./list');
 var ItemView = require('./item-view');
+
+var list = List();
 
 module.exports = React.createClass({
 
@@ -18,10 +20,9 @@ module.exports = React.createClass({
 
     var path = this.props.path;
     var list = this.state.list;
-    console.log("renderList", list.get());
 
     var itemize = function (item) {
-      return <ItemView item={item} key={item.get().id} path={path} list={list} />
+      return <ItemView item={item} key={item.id} path={path} />
     };
 
     return (
@@ -34,18 +35,15 @@ module.exports = React.createClass({
     );
   },
 
-  componentWillMount: function () {
-    list.onValue(function (value) {
-      console.log("onValue", value);
-      this.setState({
-        list: list,
-      });
+  componentDidMount: function () {
+    this.state.list.onValue(function (value) {
+      this.forceUpdate();
     }.bind(this));
   },
 
   add: function (e) {
     console.log("add");
     var id = uuid();
-    this.state.list.db.put(id, {});
+    this.state.list.Model(id, {}).put();
   },
 });

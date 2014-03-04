@@ -14,6 +14,7 @@ module.exports = React.createClass({
         <li>
           <input value={item.value} onChange={this.onChange} placeholder="empty" />
           <button onClick={this.onDelete}>x</button>
+          <button onClick={this.onSave}>✓</button>
         </li>
       );
     } else {
@@ -25,20 +26,29 @@ module.exports = React.createClass({
     }
   },
 
-  onChange: function (e) {
-    console.log("set", this.props.item.get().id, e.target.value);
+  componentDidMount: function () {
+    this.props.item.onValue(function (value) {
+      this.forceUpdate();
+    }.bind(this));
+  },
 
-    this.props.list.db.put(
-      this.props.item.get().id,
-      _.assign(this.props.item.get(), {
-        value: e.target.value,
-      })
-    );
+  onChange: function (e) {
+    console.log("set", this.props.item.id, e.target.value);
+
+    this.props.item.set({
+      value: e.target.value
+    });
+  },
+
+  onSave: function (e) {
+    console.log("save", this.props.item.id);
+
+    this.props.item.put();
   },
 
   onDelete: function (e) {
-    console.log("destroy", this.props.item.get().id);
-    this.props.list.db.del(this.props.item.get().id);
+    console.log("destroy", this.props.item.id);
+    this.props.item.del();
   },
 
 });
